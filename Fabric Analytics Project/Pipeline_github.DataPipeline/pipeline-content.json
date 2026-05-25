@@ -1,0 +1,154 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "ForEach",
+        "typeProperties": {
+          "items": {
+            "value": "@pipeline().parameters.load_config",
+            "type": "Expression"
+          },
+          "activities": [
+            {
+              "type": "Copy",
+              "typeProperties": {
+                "source": {
+                  "type": "DelimitedTextSource",
+                  "formatSettings": {
+                    "type": "DelimitedTextReadSettings"
+                  },
+                  "storeSettings": {
+                    "type": "HttpReadSettings",
+                    "requestMethod": "GET"
+                  },
+                  "datasetSettings": {
+                    "type": "DelimitedText",
+                    "typeProperties": {
+                      "location": {
+                        "type": "HttpServerLocation",
+                        "relativeUrl": {
+                          "value": "@item().source_url",
+                          "type": "Expression"
+                        }
+                      },
+                      "columnDelimiter": ",",
+                      "quoteChar": "\"",
+                      "escapeChar": "\\",
+                      "firstRowAsHeader": true
+                    },
+                    "schema": [],
+                    "externalReferences": {
+                      "connection": "4c434d8f-a712-4772-bad2-958b5c1cf135"
+                    },
+                    "annotations": []
+                  }
+                },
+                "sink": {
+                  "type": "DelimitedTextSink",
+                  "formatSettings": {
+                    "type": "DelimitedTextWriteSettings",
+                    "fileExtension": ".txt"
+                  },
+                  "storeSettings": {
+                    "type": "LakehouseWriteSettings"
+                  },
+                  "datasetSettings": {
+                    "type": "DelimitedText",
+                    "typeProperties": {
+                      "location": {
+                        "type": "LakehouseLocation",
+                        "folderPath": {
+                          "value": "@item().destination_folder",
+                          "type": "Expression"
+                        },
+                        "fileName": {
+                          "value": "@item().file_name",
+                          "type": "Expression"
+                        }
+                      },
+                      "columnDelimiter": ",",
+                      "quoteChar": "\"",
+                      "escapeChar": "\\",
+                      "firstRowAsHeader": true
+                    },
+                    "schema": [],
+                    "linkedService": {
+                      "name": "Lh_learn",
+                      "properties": {
+                        "type": "Lakehouse",
+                        "typeProperties": {
+                          "artifactId": "34c385d7-8f6f-9064-4df5-df8bd2570465",
+                          "workspaceId": "00000000-0000-0000-0000-000000000000",
+                          "rootFolder": "Files"
+                        },
+                        "annotations": []
+                      }
+                    },
+                    "annotations": []
+                  }
+                },
+                "translator": {
+                  "type": "TabularTranslator",
+                  "typeConversion": true,
+                  "typeConversionSettings": {
+                    "allowDataTruncation": true,
+                    "treatBooleanAsNumber": false
+                  }
+                },
+                "enableStaging": false
+              },
+              "policy": {
+                "timeout": "0.12:00:00",
+                "retry": 0,
+                "retryIntervalInSeconds": 30,
+                "secureInput": false,
+                "secureOutput": false
+              },
+              "name": "copy_github",
+              "dependsOn": []
+            }
+          ]
+        },
+        "name": "for_each_table",
+        "dependsOn": []
+      }
+    ],
+    "parameters": {
+      "load_config": {
+        "type": "array",
+        "defaultValue": [
+          {
+            "source_url": "GREATEMMET/Fabric_learn_project/refs/heads/main/dataset/cust_info.csv",
+            "destination_folder": "source_crm",
+            "file_name": "crm_cust_info.csv"
+          },
+          {
+            "source_url": "GREATEMMET/Fabric_learn_project/refs/heads/main/dataset/prd_info.csv",
+            "destination_folder": "source_crm",
+            "file_name": "crm_prd_info.csv"
+          },
+          {
+            "source_url": "GREATEMMET/Fabric_learn_project/refs/heads/main/dataset/sales_details.csv",
+            "destination_folder": "source_crm",
+            "file_name": "crm_sales_details.csv"
+          },
+          {
+            "source_url": "GREATEMMET/Fabric_learn_project/refs/heads/main/dataset/CUST_AZ12.csv",
+            "destination_folder": "source_erp",
+            "file_name": "erp_CUST_AZ12.csv"
+          },
+          {
+            "source_url": "GREATEMMET/Fabric_learn_project/refs/heads/main/dataset/LOC_A101.csv",
+            "destination_folder": "source_erp",
+            "file_name": "erp_LOC_A101.csv"
+          },
+          {
+            "source_url": "GREATEMMET/Fabric_learn_project/refs/heads/main/dataset/PX_CAT_G1V2.csv",
+            "destination_folder": "source_erp",
+            "file_name": "erp_PX_CAT_G1V2.csv"
+          }
+        ]
+      }
+    }
+  }
+}

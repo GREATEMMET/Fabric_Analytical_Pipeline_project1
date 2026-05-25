@@ -1,0 +1,114 @@
+table dim_product
+	lineageTag: 8d77f67a-dc77-4295-9a55-96e7b7505e11
+	sourceLineageTag: [gold].[dim_product]
+
+	column product_id
+		dataType: int64
+		formatString: 0
+		lineageTag: c821eb83-0015-4744-afa1-54587a6574b5
+		sourceLineageTag: product_id
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_number
+		dataType: int64
+		formatString: 0
+		lineageTag: c9ed77ce-ea0f-4d7d-a756-bf7dfef0ba7d
+		sourceLineageTag: product_number
+		summarizeBy: none
+		sourceColumn: product_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_key
+		dataType: string
+		lineageTag: 2ea7b673-db82-4ca0-ad37-bc9e13222913
+		sourceLineageTag: product_key
+		summarizeBy: none
+		sourceColumn: product_key
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_name
+		dataType: string
+		lineageTag: e5fd169f-f465-4de7-b904-54633063a0ab
+		sourceLineageTag: product_name
+		summarizeBy: none
+		sourceColumn: product_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_line
+		dataType: string
+		lineageTag: a887be99-26c9-49be-9dbd-4f84f790feb3
+		sourceLineageTag: product_line
+		summarizeBy: none
+		sourceColumn: product_line
+
+		annotation SummarizationSetBy = Automatic
+
+	column category_id
+		dataType: string
+		lineageTag: e6462516-d5b2-40c8-90c8-e2c35c0e0678
+		sourceLineageTag: category_id
+		summarizeBy: none
+		sourceColumn: category_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: cadf984c-7da0-47f9-97c2-6b1e55574139
+		sourceLineageTag: category
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_category
+		dataType: string
+		lineageTag: 4ff7545a-9faf-475e-b7b7-94a91a704daf
+		sourceLineageTag: sub_category
+		summarizeBy: none
+		sourceColumn: sub_category
+
+		annotation SummarizationSetBy = Automatic
+
+	column cost
+		dataType: int64
+		formatString: 0
+		lineageTag: b8f1c65c-e67f-474f-a3b0-ff9866ff615b
+		sourceLineageTag: cost
+		summarizeBy: none
+		sourceColumn: cost
+
+		annotation SummarizationSetBy = Automatic
+
+	column maintenance
+		dataType: string
+		lineageTag: 2396440a-632d-4271-94db-e00bd57e8c0d
+		sourceLineageTag: maintenance
+		summarizeBy: none
+		sourceColumn: maintenance
+
+		annotation SummarizationSetBy = Automatic
+
+	column start_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1390b0bf-6f7f-439a-b4d6-b88997c25a61
+		sourceLineageTag: start_date
+		summarizeBy: none
+		sourceColumn: start_date
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_product = entity
+		mode: directLake
+		source
+			entityName: dim_product
+			schemaName: gold
+			expressionSource: 'DirectLake - lh_gold'
+

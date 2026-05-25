@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "silver_crm_cust_info"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "f94282b4-fa3f-99ce-4c17-1c9abd383638"
+  }
+}

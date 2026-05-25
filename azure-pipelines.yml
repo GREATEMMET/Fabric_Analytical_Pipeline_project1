@@ -1,0 +1,24 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - checkout: self
+    persistCredentials: true
+    fetchDepth: 0
+
+  - script: |
+      git config user.email "you@example.com"
+      git config user.name "Your Name"
+      git remote add github https://$(GITHUB_TOKEN)@github.com/youruser/yourrepo.git
+      git push github HEAD:main --force
+    displayName: "Mirror to GitHub"
+    env:
+      GITHUB_TOKEN: $(GITHUB_TOKEN)  # stored as a secret variable

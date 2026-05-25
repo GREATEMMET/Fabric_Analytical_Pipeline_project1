@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Product Line Count and Product Category Count"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "59cb3fcc-6ba8-abcc-4f10-cdeae9dcbd5b"
+  }
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "name": "rawdata",
+    "path": "/Files/shortcuts",
+    "target": {
+      "type": "AdlsGen2",
+      "adlsGen2": {
+        "connectionId": "16f945d2-9647-43b0-9c6c-5846f903d219",
+        "location": "https://fabriclearn1.dfs.core.windows.net",
+        "subpath": "/rawdata"
+      }
+    }
+  }
+]

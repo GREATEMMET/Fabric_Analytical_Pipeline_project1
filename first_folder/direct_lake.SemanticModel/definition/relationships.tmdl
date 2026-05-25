@@ -1,0 +1,8 @@
+relationship ae3d97e8-780c-758f-0399-2315bad021c2
+	fromColumn: fact_sales.customer_id
+	toColumn: dim_customer.customer_id
+
+relationship 6cef0ed3-c1c8-a9af-84de-7fb5a6ea750e
+	fromColumn: fact_sales.product_id
+	toColumn: dim_product.product_id
+

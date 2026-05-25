@@ -1,0 +1,119 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "InvokePipeline",
+        "typeProperties": {
+          "parameters": {
+            "load_config": [
+              {
+                "source_url": "GREATEMMET/Fabric_learn_project/refs/heads/main/dataset/cust_info.csv",
+                "destination_folder": "source_crm",
+                "file_name": "crm_cust_info.csv"
+              },
+              {
+                "source_url": "GREATEMMET/Fabric_learn_project/refs/heads/main/dataset/prd_info.csv",
+                "destination_folder": "source_crm",
+                "file_name": "crm_prd_info.csv"
+              },
+              {
+                "source_url": "GREATEMMET/Fabric_learn_project/refs/heads/main/dataset/sales_details.csv",
+                "destination_folder": "source_crm",
+                "file_name": "crm_sales_details.csv"
+              },
+              {
+                "source_url": "GREATEMMET/Fabric_learn_project/refs/heads/main/dataset/CUST_AZ12.csv",
+                "destination_folder": "source_erp",
+                "file_name": "erp_CUST_AZ12.csv"
+              },
+              {
+                "source_url": "GREATEMMET/Fabric_learn_project/refs/heads/main/dataset/LOC_A101.csv",
+                "destination_folder": "source_erp",
+                "file_name": "erp_LOC_A101.csv"
+              },
+              {
+                "source_url": "GREATEMMET/Fabric_learn_project/refs/heads/main/dataset/PX_CAT_G1V2.csv",
+                "destination_folder": "source_erp",
+                "file_name": "erp_PX_CAT_G1V2.csv"
+              }
+            ]
+          },
+          "waitOnCompletion": true,
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "pipelineId": "6f9cd953-1c85-b907-476b-ddf79748227f",
+          "operationType": "InvokeFabricPipeline"
+        },
+        "externalReferences": {
+          "connection": "8e94a188-bdd0-4135-aea5-5f0b53af4d10"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Invoke_github_pipeline",
+        "dependsOn": []
+      },
+      {
+        "type": "InvokePipeline",
+        "typeProperties": {
+          "parameters": {},
+          "waitOnCompletion": true,
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "pipelineId": "2b2bd686-ae6f-bcc6-4c5f-a08a6a9c5de8",
+          "operationType": "InvokeFabricPipeline"
+        },
+        "externalReferences": {
+          "connection": "8e94a188-bdd0-4135-aea5-5f0b53af4d10"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Invoke_adls_pipeline",
+        "dependsOn": [
+          {
+            "activity": "Invoke_github_pipeline",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "InvokePipeline",
+        "typeProperties": {
+          "parameters": {},
+          "waitOnCompletion": true,
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "pipelineId": "251bdc96-26e9-ac48-4631-1f98a9d2594b",
+          "operationType": "InvokeFabricPipeline"
+        },
+        "externalReferences": {
+          "connection": "8e94a188-bdd0-4135-aea5-5f0b53af4d10"
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Invoke_dataflow_pipeline1",
+        "dependsOn": [
+          {
+            "activity": "Invoke_adls_pipeline",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

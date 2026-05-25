@@ -1,0 +1,15 @@
+[
+  {
+    "name": "bronze",
+    "path": "/Tables",
+    "target": {
+      "type": "OneLake",
+      "oneLake": {
+        "path": "Tables/bronze",
+        "itemId": "34c385d7-8f6f-9064-4df5-df8bd2570465",
+        "workspaceId": "00000000-0000-0000-0000-000000000000",
+        "artifactType": "Lakehouse"
+      }
+    }
+  }
+]

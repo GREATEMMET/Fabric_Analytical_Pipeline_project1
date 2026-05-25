@@ -1,0 +1,9 @@
+relationship f4ca1c8b-69f9-d2ad-8b32-d7dd86e37b44
+	relyOnReferentialIntegrity
+	fromColumn: fact_sales.customer_id
+	toColumn: dim_customer.customer_id
+
+relationship 104c110d-ed11-93e6-53c6-2007fec8b8ab
+	fromColumn: fact_sales.product_id
+	toColumn: dim_product.product_id
+

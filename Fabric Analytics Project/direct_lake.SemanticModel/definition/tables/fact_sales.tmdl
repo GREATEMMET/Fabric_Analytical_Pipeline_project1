@@ -1,0 +1,100 @@
+table fact_sales
+	lineageTag: 60498684-32db-4031-8c97-d148d6e861bb
+	sourceLineageTag: [gold].[fact_sales]
+
+	column order_number
+		dataType: string
+		lineageTag: bdd11785-d40e-4ab4-b726-2ccc9008792e
+		sourceLineageTag: order_number
+		summarizeBy: none
+		sourceColumn: order_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 2714e135-9a1b-4cb2-af82-f5554765ecd9
+		sourceLineageTag: product_id
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 796a4ac3-9e5d-4e56-a7e1-3fdc77179c0c
+		sourceLineageTag: customer_id
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f588aa30-7aa2-436c-a913-fc8f340226b1
+		sourceLineageTag: order_date
+		summarizeBy: none
+		sourceColumn: order_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipping_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e13c3fbd-3436-4340-8911-a85a1b236244
+		sourceLineageTag: shipping_date
+		summarizeBy: none
+		sourceColumn: shipping_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column due_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 93a277cb-2d9c-4f10-9fa4-d067b5639283
+		sourceLineageTag: due_date
+		summarizeBy: none
+		sourceColumn: due_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column sales
+		dataType: int64
+		formatString: 0
+		lineageTag: fbca4ae5-f939-4011-82d8-3d9a499b1a1f
+		sourceLineageTag: sales
+		summarizeBy: sum
+		sourceColumn: sales
+
+		annotation SummarizationSetBy = Automatic
+
+	column quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: eb991b7d-c9f9-4e74-a24b-6ab07572d102
+		sourceLineageTag: quantity
+		summarizeBy: sum
+		sourceColumn: quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column price
+		dataType: int64
+		formatString: 0
+		lineageTag: 7bc204b4-7705-4bab-aca0-ac11a2c9c822
+		sourceLineageTag: price
+		summarizeBy: sum
+		sourceColumn: price
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_sales = entity
+		mode: directLake
+		source
+			entityName: fact_sales
+			schemaName: gold
+			expressionSource: 'DirectLake - wh_final'
+
